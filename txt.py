@@ -44,7 +44,6 @@ masks = {
         '0': {
             'name': 'Exit',
             'description': 'Exit from program',
-            'filter': exit
         }
     },
 

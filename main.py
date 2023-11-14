@@ -12,14 +12,16 @@ print(language[lang]['hi'])
 
 menu = ''
 for option in masks[mask_lg]:
-    menu += option + ') ' + masks[mask_lg][str(option)]['name']
+    menu += f'{option}) {masks[mask_lg][str(option)]["name"]}'
 
 img = Image.open(input()).convert('RGB')
 
 while True:
-    print(language[lang]['choosing'], '\n', menu)
+    print(f'{language[lang]["choosing"]} \n {menu}')
     option = validate(masks[mask_lg].keys())
-    print(masks[mask_lg][option]['name'] + '\n' + masks[mask_lg][option]['description'], language[lang]['qw'], sep='\n')
+    print(f'{masks[mask_lg][option]["name"]}\n{masks[mask_lg][option]["description"]}\n{language[lang]['qw']}')
     qw = validate(language[lang]['yn'])
     if qw == language[lang]['yn'][0]:
+        if option == '0':
+            exit()
         print(masks[mask_lg][option]['filter'](input(language[lang]['input'])))
