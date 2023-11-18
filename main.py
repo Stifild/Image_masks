@@ -3,18 +3,18 @@ from txt import language, masks
 from validation import validate
 
 
-lang = 'en'
-print('Hi User! chose language. / Привет Пользователь! выбери язык.\n'
-      'Ru/En')
-lang = validate(['ru', 'en'])
-mask_lg = 'masks_' + lang
+# print('Hi User! chose language. / Привет Пользователь! выбери язык.\n'
+#       'Ru/En')
+lang = 'ru'
+mask_lg = 'masks_' + 'ru'
 print(language[lang]['hi'])
 
 menu = ''
 for option in masks[mask_lg]:
-    menu += f'{option}) {masks[mask_lg][str(option)]["name"]}'
+    menu += f'{option}) {masks[mask_lg][str(option)]["name"]}\n'
 
-img = Image.open(input()).convert('RGB')
+img = Image.open(input('Введите путь к файлу: ')).convert('RGB')
+print(type(img))
 
 while True:
     print(f'{language[lang]["choosing"]} \n {menu}')
@@ -24,4 +24,5 @@ while True:
     if qw == language[lang]['yn'][0]:
         if option == '0':
             exit()
-        print(masks[mask_lg][option]['filter'](input(language[lang]['input'])))
+        img = masks[mask_lg][option]['filter'].pixel_apply(img)
+        img.save(input('Введите путь для сохранения: '))

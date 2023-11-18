@@ -1,5 +1,5 @@
 from txt import language
-from main import lang
+# from main import lang
 
 
 def validate(list_values: list[str]) -> str:
@@ -8,8 +8,7 @@ def validate(list_values: list[str]) -> str:
     :param list_values: Список вариантов ответов
     :return: Ответ пользователя
     """
-    choice = input(language[lang]['input']).lower()
+    choice = input(language['ru']['input']).lower()
     while choice.lower() not in list_values:
-        ph = language[lang]['input error'] + list_values + '\n' + language[lang]['input']
-        choice = input(ph).lower()
+        choice = input(f'{language['ru']['input error']} {list_values}\n{language['ru']['input']}').lower()
     return choice
